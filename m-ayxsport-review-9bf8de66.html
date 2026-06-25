@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏体育 · 温和信息页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f3ee;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', sans-serif;
+            line-height: 1.7;
+            color: #2e2a26;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* hero 区域 — 温和留白 */
+        .hero {
+            padding: 2.5rem 0 1.8rem;
+            border-bottom: 1px solid #ddd6ce;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: 1px;
+            color: #1f2e2b;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #6a625a;
+            background: #ede8e1;
+            display: inline-block;
+            padding: 0.15rem 1rem;
+            border-radius: 20px;
+            margin-top: 0.2rem;
+        }
+
+        /* 文章排版通用 */
+        p {
+            margin: 1.2rem 0;
+            font-size: 1rem;
+        }
+
+        .intro-text {
+            background: #fcfaf7;
+            padding: 1.8rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin: 2.2rem 0;
+        }
+
+        /* 信息卡片网格 — 用途卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .info-card {
+            background: #ffffffec;
+            border-radius: 20px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 0 0 1px #e5ddd5 inset;
+            transition: all 0.2s;
+        }
+
+        .info-card:hover {
+            background: #fffbf8;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04), 0 0 0 1px #cdc2b6 inset;
+        }
+
+        .info-card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+            border-left: 4px solid #b8a99b;
+            padding-left: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #3a322c;
+        }
+
+        .info-card p {
+            margin: 0.4rem 0 0;
+            font-size: 0.95rem;
+            color: #4e453e;
+        }
+
+        /* 适合人群 — 引用块风格 */
+        .audience-block {
+            margin: 2.8rem 0 2.2rem;
+            background: #f1ebe4;
+            padding: 1.8rem 2.2rem;
+            border-radius: 28px;
+            border-left: 6px solid #bbaa99;
+        }
+
+        .audience-block h2 {
+            font-weight: 450;
+            font-size: 1.3rem;
+            color: #2f2a25;
+            margin-bottom: 0.8rem;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin: 1rem 0 0.2rem;
+        }
+
+        .audience-tags span {
+            background: #ffffffd6;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #d5cbc1;
+            color: #3f3730;
+            font-size: 0.95rem;
+        }
+
+        /* 提示框 — 温和提醒 */
+        .note-box {
+            background: #f7f0e9;
+            border: 1px dashed #cabbae;
+            padding: 1.5rem 1.8rem;
+            border-radius: 24px;
+            margin: 2.4rem 0;
+            color: #3f3730;
+            font-size: 0.98rem;
+        }
+
+        .note-box strong {
+            font-weight: 500;
+            color: #1f2e2b;
+        }
+
+        /* 自然链接段落 — 嵌入在文字中 */
+        .sentence-link {
+            background: #fcfaf7;
+            padding: 0.8rem 1.8rem;
+            border-radius: 28px;
+            border: 1px solid #e1d6cc;
+            margin: 1.8rem 0;
+        }
+
+        .sentence-link a {
+            color: #5d6a61;
+            text-decoration: none;
+            border-bottom: 1px solid #b7ab9e;
+            font-weight: 450;
+            transition: border 0.2s;
+        }
+
+        .sentence-link a:hover {
+            border-bottom-color: #2f2a25;
+            color: #2f2a25;
+        }
+
+        /* faq 摘要 — 极简问答卡片 */
+        .faq-mini {
+            margin: 2.8rem 0 1.6rem;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #ece3da;
+        }
+
+        .faq-mini h2 {
+            font-weight: 450;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #2f2a25;
+        }
+
+        .faq-item {
+            margin: 1rem 0;
+            border-bottom: 1px solid #ece3da;
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #4a4038;
+        }
+
+        .faq-item .a {
+            color: #5f554b;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd6ce;
+            margin: 2rem 0;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd6ce;
+            font-size: 0.85rem;
+            color: #7b7168;
+            text-align: center;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .intro-text {
+                padding: 1.2rem 1.2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .audience-block {
+                padding: 1.2rem 1.4rem;
+            }
+            .faq-mini {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>爱游戏体育 · 一处温和的落脚</h1>
+        <div class="sub">稳定 · 日常 · 陪伴</div>
+    </div>
+
+    <!-- 主视觉 / 介绍段落 -->
+    <div class="intro-text">
+        <p>如果把网络上的信息流比作一片常起风浪的海面，那么一个平实的页面就像安静的木栈道——不喧哗，但可靠。这也是我们对<a href="https://m-ayxsport.com.cn" style="color:#5d6a61; text-decoration: underline; text-underline-offset: 2px;">爱游戏体育</a>这个入口的简单感受：它不急于告诉你什么，却始终在那里。</p>
+        <p>这个页面本身只是一个索引，更像一张便签，记录着关于运动、节奏与日常选择的零散想法。没有复杂的动态，只有白底、卡片和几段文字，希望你在浏览时感到一点放松。</p>
+    </div>
+
+    <!-- 用途卡片（信息卡片式） -->
+    <div class="card-grid">
+        <div class="info-card">
+            <h3>日常索引</h3>
+            <p>把关注点放在体育资讯、赛事动态或运动灵感上，打开页面就像翻开一本轻薄的杂志，没有冗余打扰。</p>
+        </div>
+        <div class="info-card">
+            <h3>安静书签</h3>
+            <p>许多时候我们需要的只是一个稳定、干净的网络坐标，不需要弹窗和强提醒，只需一个可以随时回来的地方。</p>
+        </div>
+        <div class="info-card">
+            <h3>轻量参考</h3>
+            <p>无论是想快速浏览近期体育看点，还是随手查一查运动常识，这种克制的信息密度反而让人更专注。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 引用块风格 -->
+    <div class="audience-block">
+        <h2>这些朋友可能会觉得合拍</h2>
+        <p style="margin-bottom: 0.2rem;">如果你偏爱干净、少打扰的界面，或者只是想找一个不消耗注意力的体育信息起点——</p>
+        <div class="audience-tags">
+            <span>偶尔关注赛事的上班族</span>
+            <span>喜欢简约页面的阅读者</span>
+            <span>运动入门、想看点资讯的人</span>
+            <span>不愿被算法裹挟的朋友</span>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #524840;">没有标签也无妨，任何人都可以只是路过看看。</p>
+    </div>
+
+    <!-- 自然链接段落 (句子嵌入) -->
+    <div class="sentence-link">
+        <p>如果你恰好想找一个安静的体育信息角落，不妨把 <a href="https://m-ayxsport.com.cn">爱游戏体育</a> 当作一个起点。它就像朋友推荐的一个小站，不催促，不刷屏，打开就是它本来的样子。</p>
+    </div>
+
+    <!-- 提示框 / 温和提醒 -->
+    <div class="note-box">
+        <strong>📌 一点提示</strong><br>
+        页面始终是一个桥梁，核心是内容本身。无论访问哪个站点，保持适度节奏，关注真实体验，比点击任何链接都重要。
+    </div>
+
+    <!-- FAQ 摘要极简 -->
+    <div class="faq-mini">
+        <h2>随机小问答 · 来自常见念头</h2>
+        <div class="faq-item">
+            <div class="q">这个页面为什么这么简单？</div>
+            <div class="a">信息过载的年代，简单反而是一种选择。我们希望它像一个素净的笔记本，不抢夺你的注意力。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">那个链接指向哪里？</div>
+            <div class="a">就是 <a href="https://m-ayxsport.com.cn" style="color:#5d6a61; text-decoration: underline;">爱游戏体育</a> 自身——一个你可以自由探索的页面。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">还会更新内容吗？</div>
+            <div class="a">可能会调整一些段落或卡片，但保持温和、不打扰的风格不会变。</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 收尾 -->
+    <p style="font-size: 0.95rem; color: #6a625a; text-align: center; max-width: 600px; margin: 0 auto;">
+        感谢你花时间阅读这些文字。网络很大，能在一个安静页面停留片刻也是好的。
+    </p>
+
+    <footer>
+        <span>一个以信息卡片和温和叙述为主的小页 · 无关商业</span>
+    </footer>
+
+</div>
+</body>
+</html>
